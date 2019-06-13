@@ -1,4 +1,5 @@
 
+#include "interface.h"
 #include "naglowki.h"
 
 
@@ -28,8 +29,8 @@ int main()
 
 	promien = atof(promienn.c_str());
 
-	
-	
+
+
 
 	int iteracje;
 
@@ -43,7 +44,7 @@ int main()
 			cout << endl << "Podaj ilo¿¿œæ iteracji:";
 			cin.clear();
 			cin >> iteracje;
-	
+
 		}
 
 
@@ -58,7 +59,7 @@ int main()
 		string nazwa;
 		cin >> nazwa;
 
-		
+
 		Miasto gdansk(promien);
 		gdansk.start(iteracje,nazwa);
 		gdansk.gnuplot(iteracje);
@@ -87,16 +88,16 @@ int main()
 
 			cin >> stosunek;
 		}
-		
+
 		p = atof(stosunek.c_str());
 
 		Miasto gdansk(N, p, 25,promien);
-	
+
 		gdansk.start(iteracje);
 		gdansk.gnuplot(iteracje);
 	}
 
 
-	
+
 	return 0;
 }
