@@ -1,4 +1,5 @@
 
+#include "interface.h"
 #include "naglowki.h"
 
 
@@ -6,49 +7,37 @@
 
 int main()
 {
+    Interface interfejs; // init interfejs
+    string tmp;
+
 	srand(time(0));
 	char A;
 	A = 'B';
 	while (A != 'T' && A != 'N')
 	{
 
-		cout << "Czy chcesz wczyta¿ dane z pliku (T/N)";
+		cout << "Czy chcesz wczytac dane z pliku (T/N): ";
 
 		cin >> A;
 	}
 
 
-	string promienn = "promienn";
 	double promien;
 	do {
-		cout << endl << "Podaj promie¿ otoczenia mieszka¿ca";
+		cout << endl << "Podaj promien otoczenia mieszkanca: ";
+		cin >> tmp;
+        promien = interfejs.extract_double_from_string(tmp);
+	} while (promien == 0);
 
-		cin >> promienn;
-	} while (atof(promienn.c_str()) == 0.0);
 
-	promien = atof(promienn.c_str());
 
-	
-	
 
 	int iteracje;
-
-	cout << endl << "Podaj ilo¿¿ iteracji:";
-
-	cin >> iteracje;
-
-		while (cin.fail())
-		{
-
-			cout << endl << "Podaj ilo¿¿œæ iteracji:";
-			cin.clear();
-			cin >> iteracje;
-	
-		}
-
-
-
-
+    do {
+        cout << endl << "Podaj ilo¿¿ iteracji:";
+        cin >> tmp;
+        iteracje = interfejs.extract_int_from_string(tmp);
+    } while (iteracje == 0);
 
 
 
@@ -58,7 +47,7 @@ int main()
 		string nazwa;
 		cin >> nazwa;
 
-		
+
 		Miasto gdansk(promien);
 		gdansk.start(iteracje,nazwa);
 		gdansk.gnuplot(iteracje);
@@ -66,37 +55,26 @@ int main()
 	if(A=='N')
 	{
 
-		string LN = "Liczba_n";
 		int N;
-
-
-		while (atoi(LN.c_str()) == 0.0)
-		{
+		do{
 			cout << endl << "Podaj iloœæ mieszkañców:";
+			cin >> tmp;
+            N = interfejs.extract_int_from_string(tmp);
+		}while (N == 0);
 
-			cin >> LN;
-
-		}
-		N = atoi(LN.c_str());
-
-		string stosunek = "stosunek";
 		double p;
-		while (atof(stosunek.c_str()) == 0.0 && atof(stosunek.c_str())<=1 && atof(stosunek.c_str()) >=0)
-		{
+        do{
 			cout << endl << "Podaj stosunek kibiców legii do populacji kibiców (0,1):";
-
-			cin >> stosunek;
-		}
-		
-		p = atof(stosunek.c_str());
+			cin >> tmp;
+            p = interfejs.extract_double_from_string(tmp);
+            cout<<p;
+		}while (p <= 0 || p >= 1);
 
 		Miasto gdansk(N, p, 25,promien);
-	
+
 		gdansk.start(iteracje);
 		gdansk.gnuplot(iteracje);
 	}
 
-
-	
 	return 0;
 }
